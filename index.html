@@ -19,23 +19,24 @@
         width: 200px;
         height: 200px;
         background-color: #007bff;
+        border-radius: 50%;
         position: relative;
+        overflow: hidden;
     }
     
-    #rectangle {
-        width: 50px;
-        height: 100px;
-        background-color: #fff;
+    #wheel {
+        width: 100%;
+        height: 100%;
+        background-color: rgba(255, 255, 255, 0.5);
         position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        top: 0;
+        left: 0;
     }
 </style>
 </head>
 <body>
 <div id="container">
-    <div id="rectangle"></div>
+    <div id="wheel"></div>
 </div>
 
 <script>
@@ -49,11 +50,11 @@
         window.location.replace("not_allowed.html");
     }
 
-    // Add event listener to update rectangle position on device orientation change
+    // Add event listener to update wheel rotation on device orientation change
     window.addEventListener('deviceorientation', function(event) {
-        var x = event.beta;  // In degree in the range [-180,180]
-        var y = event.gamma; // In degree in the range [-90,90]
-        document.getElementById('rectangle').style.transform = 'translate(-50%, -50%) rotateX(' + (x * 2) + 'deg) rotateY(' + (y * 2) + 'deg)';
+        var gamma = event.gamma; // In degree in the range [-90,90]
+        var wheel = document.getElementById('wheel');
+        wheel.style.transform = 'rotate(' + gamma + 'deg)';
     });
 </script>
 </body>
