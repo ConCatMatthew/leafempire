@@ -1,35 +1,60 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <body style="background-color:#000000"></body>
-    <link rel="icon" type="image/x-icon" href="leaf.png">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Access Only</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #f0f0f0;
+    }
+    
+    #container {
+        width: 200px;
+        height: 200px;
+        background-color: #007bff;
+        position: relative;
+    }
+    
+    #rectangle {
+        width: 50px;
+        height: 100px;
+        background-color: #fff;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
 </head>
 <body>
-    <center><h1 style="color:rgb(0, 0, 0) ">hey</h1></center>
-    <center><h1 style="color:rgb(0, 255, 42) ">Leaf Empire</h1></center>
-    <center><img src="leaf.png" alt="icon" style="width:50px;height:50x;"></center>
-    <center><h1 style="color:rgb(0, 255, 42) "> </h1></center>
-    <center><h1 style="color:rgb(0, 0, 0) ">hey</h1></center>
-    <center><h1 style="color:rgb(0, 255, 42) ">Join Leaf Empire now!</h1></center>
-    <center><h1 style="color:rgb(0, 255, 42) ">Wanna join?</h1></center>
-    <center><form action="https://discord.gg/c36DNnUUMP">
-        <input type="submit" style="height:50px;width:700px; color: rgb(9, 255, 0); background-color:rgb(19, 19, 19)" value="Discord" />
-    </form></center>
-    <center><h2 style="color:rgb(0, 255, 42) ">!!! We only accept non-toxic people!!!</h2></center>
-    <center><h2 style="color:rgb(0, 255, 42) ">Toxicity = Ban</h2></center>
-    <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
-    <center><img src="spin.gif" alt="icon" style="width:100xp;height:100xp;"></center>
-    <center><h2 style="color:rgb(0, 255, 42) ">Our socials:</h2></center>
-    <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
-    <center><form action="https://twitter.com/biteh286343">
-        <input type="submit" style="height:50px;width:700px; color: rgb(9, 255, 0); background-color:rgb(19, 19, 19)" value="Twitter" />
-    </form></center>
-    <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
-        <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
-            <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
-                <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
-    <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
-    <center><form action="what.html">
-        <input type="submit" style="height:50px;width:700px; color: rgb(9, 255, 0); background-color:rgb(19, 19, 19)" value="???" />
-    </form></center>
-    <center><h style="color:rgb(0, 0, 0) ">hey</h4></center>
+<div id="container">
+    <div id="rectangle"></div>
+</div>
+
+<script>
+    // Function to check if the device is a phone
+    function isPhone() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    }
+
+    // If it's not a phone, redirect to another page
+    if (!isPhone()) {
+        window.location.replace("not_allowed.html");
+    }
+
+    // Add event listener to update rectangle position on device orientation change
+    window.addEventListener('deviceorientation', function(event) {
+        var x = event.beta;  // In degree in the range [-180,180]
+        var y = event.gamma; // In degree in the range [-90,90]
+        document.getElementById('rectangle').style.transform = 'translate(-50%, -50%) rotateX(' + x + 'deg) rotateY(' + y + 'deg)';
+    });
+</script>
 </body>
+</html>
