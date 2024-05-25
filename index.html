@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mobile & PC Version</title>
+<title>Steering Wheel Control</title>
 </head>
 <body>
 <h1>Steering Wheel Control</h1>
@@ -28,14 +28,11 @@
             .then(response => response.json())
             .then(data => {
                 console.log(data);
-                window.addEventListener('deviceorientation', function(event) {
-                    var gamma = event.gamma; // In degree in the range [-90,90]
-                    if (gamma < -5) {
-                        fetch('/signal/left', { method: 'POST' });
-                    } else if (gamma > 5) {
-                        fetch('/signal/right', { method: 'POST' });
-                    }
-                });
+                if (data.success) {
+                    window.location.href = '/control';
+                } else {
+                    alert('Invalid code');
+                }
             })
             .catch(error => console.error('Error connecting:', error));
     }
