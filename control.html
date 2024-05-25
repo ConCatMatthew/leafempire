@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Steering Control</title>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('deviceorientation', function(event) {
+            var gamma = event.gamma;
+            if (gamma < -5) {
+                fetch('/signal/left', { method: 'POST' });
+            } else if (gamma > 5) {
+                fetch('/signal/right', { method: 'POST' });
+            }
+        });
+    });
+</script>
+</head>
+<body>
+<h1>Steering Control</h1>
+<p>Turning left will simulate pressing and holding 'A'. Turning right will simulate pressing and holding 'D'.</p>
+</body>
+</html>
